@@ -4,11 +4,11 @@ import axios from 'axios';
 
 const Driver = props => (
   <tr>
-    <td>{props.exercise.name}</td>
-    <td>{props.exercise.vehicleregnumber}</td>
-    <td>{props.exercise.location}</td>
+    <td>{props.drivr.name}</td>
+    <td>{props.drivr.vehicleregnumber}</td>
+    {/* <td>{props.drivr.location}</td> */}
     <td>
-      <Link to={"/edit/"+props.exercise._id}>edit</Link> | <a href="#" onClick={() => { props.deleteDriver(props.exercise._id) }}>delete</a>
+      <Link to={"/edit/"+props.drivr._id}>edit</Link> | <a href="#" onClick={() => { props.deleteDriver(props.drivr._id) }}>delete</a>
     </td>
   </tr>
 )
@@ -25,7 +25,9 @@ export default class DriverList extends Component {
   componentDidMount() {
     axios.get('http://localhost:5000/api/v1/driver/')
       .then(response => {
-        this.setState({ mydrivers: response.data })
+          console.log('faiza',response.data.data)
+         this.setState({ mydrivers: response.data.data })
+
       })
       .catch((error) => {
         console.log(error);
@@ -43,8 +45,8 @@ export default class DriverList extends Component {
   }
 
   driverList() {
-    return this.state.mydrivers.map(currentexercise => {
-      return <Driver exercise={currentexercise} deleteDriver={this.deleteDriver} key={currentexercise._id}/>;
+    return this.state.mydrivers.map(current => {
+      return <Driver drivr={current} deleteDriver={this.deleteDriver} key={Math.random}/>;
     })
   }
 
@@ -62,7 +64,10 @@ export default class DriverList extends Component {
             </tr>
           </thead>
           <tbody>
-            { this.driverList() }
+            { this.state.mydrivers.map(current => {
+                return <Driver drivr={current} deleteDriver={this.deleteDriver} key={current._id}/>;
+             }) 
+             }
           </tbody>
         </table>
       </div>

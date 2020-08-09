@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class Createdriver extends Component {
+export default class Editdriver extends Component {
   constructor(props) {
     super(props);
 
@@ -17,8 +17,22 @@ export default class Createdriver extends Component {
   }
 
   componentDidMount() {
-console.log('mounted')
-  }
+      const myURI=`http://localhost:5000/api/v1/driver/${this.props.match.params.id}`;
+      console.log(myURI)
+
+    axios.get(`http://localhost:5000/api/v1/driver/${this.props.match.params.id}`)
+    .then(response => {
+        const {data} =response.data;
+      this.setState({
+        name: data.name,
+        vehicleregnumber: data.vehicleregnumber,
+        lastUpdate: data.lastUpdate
+      })   
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  } //componentdidmount
 
   onChangeUsername(e) {
     this.setState({
@@ -43,7 +57,7 @@ console.log('mounted')
 
     console.log(driver);
 
-    axios.post('http://localhost:5000/api/v1/driver/', driver)
+    axios.put('http://localhost:5000/api/v1/driver/'+this.props.match.params.id, driver)
       .then(res => console.log(res.data))
       .catch(err=>console.log(err,'error'));
 
@@ -53,7 +67,7 @@ console.log('mounted')
   render() {
     return (
     <div>
-      <h3>Register Driver</h3>
+      <h3>Edit Driver</h3>
       <form onSubmit={this.onSubmit}>
         <div className="form-group"> 
           <label>Username: </label>
@@ -73,6 +87,10 @@ console.log('mounted')
               value={this.state.vehicleregnumber}
               onChange={this.onChangeReg}
               />
+        </div>
+        <div className="form-group"> 
+          <label>Last Update </label>
+          {this.state.lastUpdate}
         </div>
 
         <div className="form-group">

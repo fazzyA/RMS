@@ -65,7 +65,7 @@ exports.deleteDriver = async (req, res, next) => {
 // @access    Public
 exports.getDriver = async (req, res, next) => {
   try {
-    const drivers = await Driver.find();
+    const drivers = await Driver.findById(req.params.id);
     res.status(200).json({ success: true, data: drivers });
   } catch (err) {
     res.status(400).json({ success: false, error: err.message });
