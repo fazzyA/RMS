@@ -1,7 +1,16 @@
 .App {
-  text-align: center;
+  text-align: left;
+  width: 70%;
+  border-radius: 50px;
+  border:1px solid grey;
+  background-color: beige;
 }
-
+.form-control{
+  width: 500px!important;
+}
+.navbar{
+  border-radius: 50px !important;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
