@@ -47,7 +47,7 @@ console.log('mounted')
       .then(res => console.log(res.data))
       .catch(err=>console.log(err,'error'));
 
-   // window.location = '/drivers';
+    window.location = '/drivers';
   }
 
   render() {
