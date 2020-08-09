@@ -36,11 +36,14 @@ export default class DriverList extends Component {
   }
 
   deleteDriver(id) {
+    console.log(id)
+
     axios.delete('http://localhost:5000/api/v1/driver/'+id)
-      .then(response => { console.log(response.data)});
+      .then(response => { console.log(response.data)})
+      .catch(err=>console.log(err));
 
     this.setState({
-      exercises: this.state.exercises.filter(el => el._id !== id)
+      mydrivers: this.state.mydrivers.filter(el => el._id !== id)
     })
   }
 
