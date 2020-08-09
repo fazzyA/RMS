@@ -1,18 +1,35 @@
 {
-  "name": "backend",
+  "name": "assignment",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "test for MERN",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint  --fix",
+    "start": "node server",
+    "dev": "nodemon server",
+    "test": "jest --watch",
+    "heroku-postbuild": "npm install"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Sadaf Siddiqui",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "ghitser"
+  },
   "dependencies": {
+    "@shelf/jest-mongodb": "^1.2.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "eslint-plugin-promise": "^4.2.1",
     "express": "^4.17.1",
-    "mongoose": "^5.9.28"
+    "mongoose": "^5.9.19"
+  },
+  "devDependencies": {
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^26.1.0",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5"
   }
 }
